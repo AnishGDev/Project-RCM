@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html style="background: url(test_wallpaper.jpg) center / cover">
+    <head>
+        <title>Testing Robot Image
+        </title>
+        <style>
+            input {
+                outline:none;
+                }
+            .spaced_span {
+              display: block;
+              margin-bottom: 50px
+            }
+            #main-board {
+                position: relative;
+                text-align: center;
+                top: 0;
+		        left: 0;
+                padding-bottom: 100%
+            }
+            #roboboy {
+                position: absolute;
+                top: 60px;
+		        left: 80px;
+            }
+            .tablink {
+                background-color: #555;
+                color: white;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                font-size: 17px;
+                width: 25%;
+                }
+
+                .tablink:hover {
+                background-color: #777;
+                }
+
+                /* Style the tab content */
+                .tabcontent {
+                color: white;
+                display: none;
+                padding: 50px;
+                text-align: center;
+                }
+
+                .tabs {
+                    padding-top: 40%;
+                    text-align: center;
+                    padding-right: 15%;
+                }
+                #wrapper{
+                    width:90%;
+                    max-width:960px;
+                }
+                
+    #Drive {background-color:red;}
+    #Drag {background-color:green;}
+    #Tokyo {background-color:blue;}
+    #Oslo {background-color:orange;}
+
+
+    /* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+#menu {
+    top:0;
+    left: 0;
+    height: 100%
+}
+
+#speed-slider {
+    position: absolute;
+    top: 30%;
+	  right: 10%;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+    </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+        <section class="section center">
+            <header class="hero-body">
+                <div class="is-overlay" style="top:82px; padding-right: 20%; text-align: center">
+                  <h1 class="subtitle is-4">EV3</h1>
+                  <h2 class="title is-1">Engine</h2>
+                </div>
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="#">Settings</a>
+                    <a href="index.html">Home Screen</a>
+                    <a href="#">Exit</a>
+                    </div>
+                    
+                    <!-- Use any element to open the sidenav -->
+                        <button id="menu" class="button is-primary" onclick="openNav()">Menu</button>
+                    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+                    <div id="main">
+            </div>
+              </header>
+            <figure class="image is-128x128"">
+                <!---
+                <div style="position: relative; left: 0; top:0">
+                    <input type="image" id="main-board" src="background.jpg" width="800" height="450"/>
+                    <img src="roboboy.png" id="roboboy"/>
+                </div>
+            -->
+                <canvas id="canvas" width="800" height="450"/>
+              </figure>
+              <div class="tabs is-toggle is-toggle-rounded is-centered">
+                <ul id="optionsList">
+                  <li class="is-active" id="driveButton">
+                    <a>
+                      <span class="icon is-small"><i class="fas fa-truck-monster"></i></span>
+                      <span>Drive Mode</span>
+                    </a>
+                  </li>
+                  <li id="dragButton">
+                    <a>
+                      <span class="icon is-small"><i class="fas fa-hand-point-up"></i></span>
+                      <span>Drag Mode</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div id = "speed-slider">
+                    <span class="spaced_span">
+                        <h1 class="title is-4">Speed</h1>
+                      <input id="speed" class="slider is-fullwidth is-info has-output" step="1" min="0" max="100" value="50" type="range">
+                    </span>
+                    <span class="spaced_span">
+                      <h1 class="title is-4">Heading</h1>
+                      <h4>-180 <input class="slider is-fullwidth is-info has-output" step="0.01" min="-3.1415" max="3.1415" value="0" type="range" id="angle">180</h4>
+                    </span>
+                    <span class="spaced_span">
+                      <h1 class="title is-4">Wheel Size</h1>
+                      <input class="input is-rounded" type="text" placeholder="Enter Wheel Radius" value="2.7">
+                    </span>
+                      <div class="tags has-addons">
+                        <span class="tag is-dark is-medium">Connection Status</span>
+                        <span id= "connection_status" class="tag is-success is-medium">connected  
+                        </span>
+                        <span>
+                          <i class="icon"></i>
+                        </span>
+                      </div>
+                  
+            </div>
+        </section>
+        <!---
+        <button class="tablink" onclick="changeMode('Drive', this, 'red')" id="defaultOpen">Drive</button>
+        <button class="tablink" onclick="changeMode('Drag', this, 'green')">Drag</button>
+        <div id="Drive" class="tabcontent">
+        <h1>Drive Mode</h1>
+            <p>Click on the canvas to drive the robot around.</p>
+        </div>
+
+        <div id="Drag" class="tabcontent">
+            <h1>Drag Mode</h1>
+                <p>Drag the Robot around to change its position.</p>
+        </div>
+        -->
+    </div>
+    </body>
+    <script>
+        yeet=require('./renderer-robo.js')
+        function changeMode(mode, element, color) {
+            var i, tabContent, tabLinks;
+            tabContent = document.getElementsByClassName("tabcontent");
+            for (i=0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            tabLinks = document.getElementsByClassName("tablink");
+            for (i=0; i< tabLinks.length; i++) {
+                tabLinks[i].style.backgroundColor="";
+            }
+            document.getElementById(mode).style.display = "block";
+            element.style.backgroundColor = color;
+        }
+        //document.getElementById("defaultOpen").click();
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</html>

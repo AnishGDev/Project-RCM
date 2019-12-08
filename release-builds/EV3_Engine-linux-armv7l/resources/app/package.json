@@ -1,0 +1,23 @@
+{
+  "name": "ev3_electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.3",
+    "electron-builder": "^4.0.3"
+  },
+  "dependencies": {
+    "bulma": "^0.7.4",
+    "electron-rebuild": "^1.8.4",
+    "jimp": "^0.6.4",
+    "jquery": "^3.4.1",
+    "zerorpc": "git+https://github.com/fyears/zerorpc-node.git"
+  }
+}
