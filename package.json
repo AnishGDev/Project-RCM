@@ -17,7 +17,7 @@
     "bulma": "^0.7.4",
     "electron-rebuild": "^1.8.4",
     "jimp": "^0.6.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "zerorpc": "git+https://github.com/fyears/zerorpc-node.git"
   }
 }
