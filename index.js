@@ -26,11 +26,6 @@ function createWindow() {
     win.on('closed', () => {
         win = null;
     })
-    var testPath = path.join(__dirname, 'py', 'testing_spawn.py')
-    var python = require('child_process').spawn('python', [testPath]);
-    python.stdout.on('data',function(data){
-        console.log("data: ",data.toString('utf8'));
-    });
 }
 app.on('ready', createWindow);
 function destroySplash() {
